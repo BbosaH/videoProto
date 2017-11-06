@@ -1,0 +1,188 @@
+<div ng-controller="HomeCtrl">
+
+		<!-- Header pill -->
+		<div class="container header_row">
+		  <div class="row " >
+
+		  <div class="col-sm-4">
+		  	<img src='images/logo2.png' style="margin-left:15%;margin-top: 2px;"/>
+		  </div>
+
+		  <div class="col-sm-7">
+
+		   		 <span ng-if="toggle_value==1"><button class="btn btn-link" ng-click="backToList()" style="text-decoration: none;color: #FF9900;margin-left: 2%"><i class="ion-android-arrow-dropleft-circle" style="font-size:25px;"></i><text style="font-size: 25px;"> back to listing</text></button></span>
+		   		
+		  </div>
+		  <div class="col-sm-1">
+
+		  	<button class="btn btn-link" ng-click="logout()" style="text-decoration: none;background-color: #FF9900;padding-top:3%;height: 40px"><text style="font-size: 15px;color:black;font-weight: bold"> logout</text></button>
+		  </div>
+		  	
+            
+		  	
+		  	
+		  </div>
+		 
+		</div>
+		<!-- end header pill -->
+		<!-- starting  video listing pill -->
+
+		<div class="container" id="face_main" style="background-color: white" ng-if="toggle_value==0">
+		 <div class="row" style="margin-top: -2%">
+
+		  <div class="col-sm-1">
+		  </div>
+
+		   <div class="col-sm-10">
+		        
+		   		<h5 class="listing_header" >Trending <text style='color:#FF9900'>Videos</text></h5>
+		   		<hr>
+		   		<div class="row" id="shop" content-item>
+		   		
+		   		     <content-item ng-repeat="item in content" content="item" toggle="goToVideo(item._id)"></content-item>
+		   			
+		   		</div>
+		   		
+
+		   </div>
+
+		   <div class="col-sm-1">
+
+		  </div>
+		 </div>
+		 
+		 <div class="row">
+		 	<div class="col-sm-12">
+		 	  <div class="panel-footer">
+		 	   <div class="row"  style="height:15px;">
+		 	       <div class="col-sm-6">
+                      <label style="">Design by : Henry Bbosa Lujja</label>
+                    </div>
+                    <div class="col-sm-6">
+                      <!-- <label style="">&copy Copyright swipeIT.com</label> -->
+                     </div>
+                </div>
+                                        
+
+                                        
+                                          
+             </div>
+		 	</div>
+		 </div>
+		</div>
+		<!-- end video listing pill -->
+
+		<!-- individual video pill -->
+
+		<div class="container" id="face_main" style="background-color: white" ng-if="toggle_value==1">
+		 <div class="row">
+
+		  <div class="col-sm-1">
+		   
+		  </div>
+
+		    <div class="col-sm-10">
+		     
+		   		 <!-- <span> <h4 class="listing_header">Video</h4> 
+		   		 <button class="btn btn-link" ng-click="backToList()" style="text-decoration: none;color: #000000"><i class="ion-android-arrow-dropleft-circle" style="font-size:20px;"></i><text style="font-size: 20px;"> back to listing</text></button></span>
+		   		<hr> -->
+		   		<div class="row">
+		   		    <one-video-item  content="chosenVideo"></one-video-item>
+		   		   
+		   		    
+			   		<!-- <div class="col-sm-8">
+				   		<video width="620" height="440" controls>
+
+				   			<source ng-src="{{config.BaseURL+chosenVideo.url}}" type="video/mp4">
+		  					
+				   			
+				   		</video>
+			   		</div> -->
+			   		<div class="col-sm-4">
+			   			<br/><br/>
+			   			<h3 class="">About<text style='color:#FF9900'> Video</text></h3>
+			   			<ul class="c-rating"></ul>
+			   			<p style="color:#2D2D2D">{{chosenVideo.description}}</p>
+			   		</div>
+		   		</div>
+		   		 <br/>
+
+		   </div>
+
+		   <div class="col-sm-1">
+
+		  </div>
+		 </div>
+
+		 <div class="row">
+		 	<div class="col-sm-12">
+		 	  <div class="panel-footer">
+		 	   <div class="row"  style="height:15px;">
+		 	       <div class="col-sm-6">
+                      <label style="">Design by : Henry Bbosa Lujja</label>
+                    </div>
+                    <div class="col-sm-6">
+                      <!-- <label style="">&copy Copyright swipeIT.com</label> -->
+                     </div>
+                </div>
+                                        
+
+                                        
+                                          
+             </div>
+		 	</div>
+		 </div>
+
+		</div>
+
+		<!-- end / individual video pill -->
+
+<script>
+
+
+  // /**
+  //  * Demo in action!
+  //  */
+   (function() {
+
+  	$(".video-js").load(function() {
+
+          $(".video-js").each(function (videoIndex) {
+
+              var videoId = $(this).attr("id");
+              console.log('The video id'+videoId);
+
+              videojs(videoId).ready(function(){
+                  this.on("play", function(e) {
+                      //pause other video
+                      $(".video-js").each(function (index) {
+                          if (videoIndex !== index) {
+                              this.player.pause();
+                          }
+                      });
+                  });
+
+              });
+          });
+
+
+        // Run code
+        });
+
+   })();
+
+</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
